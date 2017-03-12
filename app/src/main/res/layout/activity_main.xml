@@ -47,29 +47,24 @@
         <!--</RelativeLayout>-->
 
 
-        <com.arafa.ajmandedwv.CircleMenuLayout
-            android:id="@+id/circle_menu"
+        <com.arafa.ajmandedwv.CursorWheelLayout
+            android:layoutAnimation = "@anim/my_layout_animation"
+            android:id="@+id/test_circle_menu_top"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
+            android:layout_height="350dip"
+            android:layout_gravity="center"
+            app:wheelItemRotateMode="outward"
+            app:wheelSelectedAngle="270">
 
-            <RelativeLayout
-                android:id="@id/id_circle_menu_item_center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:layout_width="104.0dip"
-                    android:layout_height="104.0dip"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/home"/>
-
-                <ImageView
-                    android:layout_width="116.0dip"
-                    android:layout_height="116.0dip"
-                    android:layout_centerInParent="true" />
-            </RelativeLayout>
-        </com.arafa.ajmandedwv.CircleMenuLayout>
+            <ImageView
+                android:id="@id/id_wheel_menu_center_item"
+                style="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:layout_width="104.0dip"
+                android:layout_height="104.0dip"
+                android:gravity="center"
+                android:src="@drawable/home"
+                />
+        </com.arafa.ajmandedwv.CursorWheelLayout>
 
 
         <android.support.design.widget.AppBarLayout

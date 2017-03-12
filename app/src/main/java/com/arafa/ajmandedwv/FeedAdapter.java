@@ -53,11 +53,11 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         runEnterAnimation(viewHolder.itemView, position);
         CellFeedViewHolder holder = (CellFeedViewHolder) viewHolder;
         if (position % 2 == 0) {
-            holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_1);
-            holder.ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_1);
+//            holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_1);
+//            holder.ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_1);
         } else {
-            holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_2);
-            holder.ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_2);
+//            holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_2);
+//            holder.ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_2);
         }
     }
 

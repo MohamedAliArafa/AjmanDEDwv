@@ -14,10 +14,16 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.arafa.ajmandedwv.adapter.SimpleImageAdapter;
+import com.arafa.ajmandedwv.data.ImageData;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CursorWheelLayout.OnMenuSelectedListener {
     public static final String ACTION_SHOW_LOADING_ITEM = "action_show_loading_item";
 
     @BindView(R.id.toolbar)
@@ -30,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
     CoordinatorLayout clContent;
     @BindView(R.id.ivLogo)
     ImageView ivLogo;
-    @BindView(R.id.circle_menu)
-    CircleMenuLayout mCircleMenuLayout;
+    @BindView(R.id.test_circle_menu_top)
+    CursorWheelLayout mTestCircleMenuTop;
+//    @BindView(R.id.circle_menu)
+//    CircleMenuLayout mCircleMenuLayout;
 
 
     private String[] mItemTexts = new String[] { "About ", "ContactUS", "Guide",
@@ -67,27 +75,28 @@ public class MainActivity extends AppCompatActivity {
             pendingIntroAnimation = true;
         }
         ButterKnife.bind(this);
-        mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
-        mCircleMenuLayout.setOnMenuItemClickListener(new CircleMenuLayout.OnMenuItemClickListener()
-        {
-
-            @Override
-            public void itemClick(View view, int pos)
-            {
-                Toast.makeText(MainActivity.this, mItemTexts[pos],
-                        Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void itemCenterClick(View view)
-            {
-                Toast.makeText(MainActivity.this,
-                        "you can do something just like ccb  ",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        initWheelData();
+//        mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
+//        mCircleMenuLayout.setOnMenuItemClickListener(new CircleMenuLayout.OnMenuItemClickListener()
+//        {
+//
+//            @Override
+//            public void itemClick(View view, int pos)
+//            {
+//                Toast.makeText(MainActivity.this, mItemTexts[pos],
+//                        Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//            @Override
+//            public void itemCenterClick(View view)
+//            {
+//                Toast.makeText(MainActivity.this,
+//                        "you can do something just like ccb  ",
+//                        Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
 //        circleRoot.setOnTouchListener(this);
 //        createCircle();
@@ -99,6 +108,47 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_menu_white);
     }
+
+    private void initWheelData() {
+        List<ImageData> imageDatas = new ArrayList<ImageData>();
+        imageDatas.add(new ImageData(R.drawable.guide, "guide"));
+        imageDatas.add(new ImageData(R.drawable.word, "word"));
+        imageDatas.add(new ImageData(R.drawable.about, "about"));
+        imageDatas.add(new ImageData(R.drawable.contact, "contact"));
+        imageDatas.add(new ImageData(R.drawable.suggest, "suggest"));
+        imageDatas.add(new ImageData(R.drawable.services, "services"));
+        imageDatas.add(new ImageData(R.drawable.serviceguide, "serviceguide"));
+        imageDatas.add(new ImageData(R.drawable.register, "register"));
+        imageDatas.add(new ImageData(R.drawable.media, "media"));
+
+
+        SimpleImageAdapter simpleImageAdapter = new SimpleImageAdapter(this, imageDatas);
+        mTestCircleMenuTop.setAdapter(simpleImageAdapter);
+        mTestCircleMenuTop.setOnMenuSelectedListener(new CursorWheelLayout.OnMenuSelectedListener() {
+            @Override
+            public void onItemSelected(CursorWheelLayout parent, View view, int pos) {
+                Toast.makeText(MainActivity.this, "Top Menu selected position:" + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
+        mTestCircleMenuTop.setOnMenuItemClickListener(new CursorWheelLayout.OnMenuItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
+                Toast.makeText(MainActivity.this, "Top Menu click position:" + pos, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    @Override
+    public void onItemSelected(CursorWheelLayout p, View view, int pos) {
+    }
+
+//    @OnClick(R.id.main_button_random_selected)
+//    void onRandomClick() {
+//        int index = mRandom.nextInt(10);
+//        mTestCircleMenuLeft.setSelection(index);
+//        mTestCircleMenuRight.setSelection(index, false);
+//        mM
 
 //    private void createCircle() {
 //        int numViews = 8;
